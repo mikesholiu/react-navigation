@@ -61,15 +61,15 @@ function forHorizontal(
   const index = scene.index;
   const opacity = position.interpolate({
     inputRange: [first, first + 0.01, index, last - 0.01, last],
-    outputRange: ([0, 1, 1, 0.85, 0]: Array<number>),
+    outputRange: ([0, 1, 1, 0, 0]: Array<number>), // @ML CHANGES fourth value to 0 from 0.85
   });
 
   const width = layout.initWidth;
   const translateX = position.interpolate({
     inputRange: ([first, index, last]: Array<number>),
     outputRange: I18nManager.isRTL
-      ? ([-width, 0, width * 0.3]: Array<number>)
-      : ([width, 0, width * -0.3]: Array<number>),
+      ? ([-width, 0, width * 1]: Array<number>) // @ML CHANGES to 1 from 0.3
+      : ([width, 0, width * -1]: Array<number>), // @ML CHANGES to -1 from -0.3
   });
   const translateY = 0;
 
